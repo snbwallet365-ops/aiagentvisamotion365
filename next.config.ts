@@ -2,6 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  // Arena's browser preview is served from a separate origin.
+  allowedDevOrigins: ["3000-i5tuo7ku7ym8zi05wlpgo.e2b.app"],
   compress: true,
   reactStrictMode: true,
   images: {
