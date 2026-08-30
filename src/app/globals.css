@@ -1,0 +1,174 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Hind Siliguri", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Chatex design tokens — White Mode */
+  --color-canvas: #fafafa;
+  --color-panel: #ffffff;
+  --color-line: #eaeaea;
+  --color-line2: #e5e7eb;
+  --color-ink: #111827;
+  --color-muted: #6b7280;
+  --color-faint: #9ca3af;
+  --color-hover: #f3f4f6;
+  --color-accent: #000000;
+}
+
+html, body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: "opsz" 16;
+}
+
+::selection { background: #e5e7eb; }
+
+/* ── Variable font optical sizing ── */
+.cx-display { font-variation-settings: "opsz" 32; letter-spacing: -0.02em; }
+.cx-micro { font-variation-settings: "opsz" 12; }
+
+/* ── Elements ── */
+.cx-card {
+  background: var(--color-panel);
+  border: 1px solid var(--color-line);
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.cx-input {
+  width: 100%;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 10px 13px;
+  font-size: 14px;
+  background: #fff;
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.cx-input:focus { border-color: #b9bcc4; box-shadow: 0 0 0 3px rgba(0,0,0,.05); }
+
+.cx-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  border-radius: 9999px;
+  font-size: 13.5px; font-weight: 500;
+  padding: 8px 15px;
+  border: 1px solid var(--color-line2);
+  background: #fff;
+  color: var(--color-ink);
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, transform .1s ease, opacity .15s ease;
+  white-space: nowrap;
+}
+.cx-btn:hover { background: var(--color-hover); }
+.cx-btn:active { transform: scale(.98); }
+.cx-btn:disabled { opacity: .4; cursor: not-allowed; }
+.cx-btn-dark {
+  background: #000; border-color: #000; color: #fff;
+}
+.cx-btn-dark:hover { background: #1f2937; border-color: #1f2937; }
+
+.cx-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  border: 1px solid var(--color-line2);
+  border-radius: 16px;
+  padding: 6px 15px;
+  font-size: 13.5px;
+  color: #374151;
+  background: #fff;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, transform .12s ease;
+  white-space: nowrap;
+}
+.cx-chip:hover { background: var(--color-hover); border-color: #d1d5db; transform: translateY(-1px); }
+.cx-chip-on { background: #111827; border-color: #111827; color: #fff; }
+.cx-chip-on:hover { background: #1f2937; }
+
+.cx-nav {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  color: #374151;
+  transition: background .15s ease, color .15s ease;
+}
+.cx-nav:hover { background: var(--color-hover); }
+.cx-nav-on { background: var(--color-hover); color: #111827; font-weight: 500; }
+
+.cx-pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  border-radius: 9999px;
+  border: 1px solid var(--color-line2);
+  padding: 3px 10px;
+  font-size: 11.5px;
+  color: var(--color-muted);
+  background: #fff;
+}
+
+/* Adaptive Transparency (Glassmorphism 2.0) — overlays only */
+.cx-glass {
+  background: rgba(255,255,255,.78);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(234,234,234,.9);
+  box-shadow: 0 8px 32px rgba(0,0,0,.08);
+}
+
+.cx-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
+.cx-scroll::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 8px; }
+.cx-scroll::-webkit-scrollbar-thumb:hover { background: #d1d5db; }
+.cx-scroll::-webkit-scrollbar-track { background: transparent; }
+
+/* ── Ambient AI micro-interactions ── */
+@keyframes cx-fade-up {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+.cx-fade { animation: cx-fade-up .32s cubic-bezier(.2,.7,.3,1) both; }
+
+@keyframes cx-in {
+  from { opacity: 0; transform: translateY(-8px) scale(.98); }
+  to { opacity: 1; transform: none; }
+}
+.cx-in { animation: cx-in .22s cubic-bezier(.2,.7,.3,1) both; }
+
+@keyframes cx-shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.cx-shimmer {
+  background: linear-gradient(90deg, #f3f4f6 25%, #e9eaee 50%, #f3f4f6 75%);
+  background-size: 800px 100%;
+  animation: cx-shimmer 1.5s linear infinite;
+}
+
+@keyframes cx-bounce {
+  0%,80%,100% { opacity:.28; transform: translateY(0) scale(.8); }
+  40% { opacity:1; transform: translateY(-3px) scale(1); }
+}
+.cx-dot { animation: cx-bounce 1.1s infinite; }
+
+@keyframes cx-spin { to { transform: rotate(360deg); } }
+.cx-spin { animation: cx-spin .8s linear infinite; }
+
+@keyframes cx-progress {
+  0% { width: 4%; } 45% { width: 62%; } 80% { width: 88%; } 100% { width: 96%; }
+}
+.cx-progress { animation: cx-progress 6s ease-out forwards; }
+
+/* ── Prose ── */
+.cx-prose { font-size: 14.5px; line-height: 1.8; color: #1f2937; }
+.cx-prose h1 { font-size: 19px; font-weight: 600; margin: 16px 0 8px; color: #111827; }
+.cx-prose h2 { font-size: 16px; font-weight: 600; margin: 18px 0 6px; color: #111827; }
+.cx-prose h3 { font-size: 14.5px; font-weight: 600; margin: 13px 0 5px; }
+.cx-prose p { margin: 7px 0; }
+.cx-prose ul { margin: 7px 0; padding-left: 20px; list-style: disc; }
+.cx-prose ol { margin: 7px 0; padding-left: 22px; list-style: decimal; }
+.cx-prose li { margin: 3px 0; }
+.cx-prose code { background: #f3f4f6; border-radius: 5px; padding: 1px 5px; font-size: 12.5px; }
+.cx-prose table { width: 100%; border-collapse: collapse; margin: 11px 0; font-size: 13px; }
+.cx-prose td, .cx-prose th { border: 1px solid var(--color-line2); padding: 7px 10px; text-align: left; }
+.cx-prose tr:first-child td { background: #f9fafb; font-weight: 600; }
+.cx-prose blockquote { border-left: 3px solid var(--color-line2); padding-left: 13px; color: var(--color-muted); margin: 9px 0; }
+.cx-prose strong { font-weight: 600; color: #111827; }
+.cx-prose a { color: #111827; text-decoration: underline; }
